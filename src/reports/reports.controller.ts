@@ -15,8 +15,8 @@ import {
 import { ReportsService } from './reports.service';
 import { CreateReportDtoIn } from './dto/create-report.dto-in';
 import { CreateReportDtoOut } from './dto/create-report.dto-out';
-import { createReportDtoToReport } from './convertors';
-import { ReportDocument } from './schemas/report.schema';
+import { createReportDtoToReport, reportDocumentToReportDtoOut } from './convertors';
+import { ReportDtoOut } from './dto/report.dto-out';
 
 @ApiTags('reports')
 @Controller('reports')
@@ -24,9 +24,10 @@ export class ReportsController {
   constructor(private readonly reportsService: ReportsService) {}
 
   @Get()
-  @ApiOkResponse({ description: 'List all reports' })
-  findAll(): Promise<ReportDocument[]> {
-    return this.reportsService.findAll();
+  @ApiOkResponse({ description: 'List all reports', type: ReportDtoOut, isArray: true })
+  async findAll(): Promise<ReportDtoOut[]> {
+    const reports = await this.reportsService.findAll();
+    return reports.map(reportDocumentToReportDtoOut);
   }
 
   @Post()
