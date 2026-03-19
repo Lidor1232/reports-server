@@ -19,7 +19,7 @@ class LocationDto {
   coordinates: [number, number];
 }
 
-export class CreateReportDto {
+export class CreateReportDtoIn {
   @IsString()
   @IsNotEmpty()
   type: string;
@@ -38,3 +38,4 @@ export class CreateReportDto {
   @IsDateString()
   date: string;
 }
+

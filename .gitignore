@@ -11,5 +11,16 @@ dist/
 .env
 .env.*
 
+# Postman
+.postman/
+postman/
+*.postman_collection.json
+*.postman_environment.json
+*.postman_globals.json
+*.postman_data.json
+*.postman_*.json
+*.postman_*.yaml
+*.postman_*.yml
+
 # OS
 .DS_Store
